@@ -46,7 +46,7 @@ export default function RootLayout() {
         <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
         <ThemeProvider value={DefaultTheme}>
           <Stack>
-            <Stack.Screen name="index" options={{}} />
+            <Stack.Screen name="index" options={{ headerShown: false }} />
           </Stack>
         </ThemeProvider>
       </SafeAreaView>
