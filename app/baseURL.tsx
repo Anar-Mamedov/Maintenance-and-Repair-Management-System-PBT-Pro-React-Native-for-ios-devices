@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Alert, StyleSheet, Text } from "react-native";
+import { View, Alert, StyleSheet, Text, Image } from "react-native";
 import { Button, Input } from "tamagui";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -33,6 +33,13 @@ const BaseURL = ({ onBaseURLChanged }: { onBaseURLChanged: any }) => {
 
   return (
     <View style={{ padding: 20, flex: 1, justifyContent: "center" }}>
+      <View style={{ marginBottom: 20 }}>
+        <Image
+          source={require("../assets/images/logo.png")} // Dosya yolu örnek olarak verilmiştir, gerçek dosya yolunu giriniz.
+          style={styles.logo}
+        />
+        <Text style={{ textAlign: "center" }}>version: 0.0.1</Text>
+      </View>
       <Input
         value={inputValue}
         onChangeText={handleChangeText}
@@ -56,6 +63,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 20,
     paddingLeft: 10,
+  },
+  logo: {
+    width: 150, // Logo genişliği
+    alignSelf: "center", // Logo merkeze hizalanır
+    resizeMode: "contain", // Logo oranlarını korur
   },
   focusedInput: {
     borderColor: "blue",
