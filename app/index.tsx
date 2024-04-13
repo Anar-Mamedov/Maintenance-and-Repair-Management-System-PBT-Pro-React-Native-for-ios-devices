@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, ImageBackground } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Login from "./login";
 import BaseURL from "./baseURL";
@@ -17,16 +17,22 @@ const Index = () => {
     fetchBaseURL();
   }, []); // Bağımlılık dizisi boş, yani yalnızca bileşen monte edildiğinde çalışır
 
-  if (baseURL === null) {
-    return <BaseURL onBaseURLChanged={setBaseURL} />; // onBaseURLChanged prop'u eklendi
-  } else {
-    return (
-      <>
-        <Login />
-        <RemoveBaseURL onBaseURLRemoved={setBaseURL} />
-      </>
-    );
-  }
+  return (
+    <ImageBackground
+      source={require("../assets/images/login_background.webp")} // Yerel dosya yolunu buraya girin
+      style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: "rgba(238, 238, 238, 0.95)" }}>
+        {baseURL === null ? (
+          <BaseURL onBaseURLChanged={setBaseURL} />
+        ) : (
+          <>
+            <Login />
+            <RemoveBaseURL onBaseURLRemoved={setBaseURL} />
+          </>
+        )}
+      </View>
+    </ImageBackground>
+  );
 };
 
 export default Index;
