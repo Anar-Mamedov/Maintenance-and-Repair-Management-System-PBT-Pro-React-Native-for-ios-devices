@@ -42,14 +42,14 @@ export default function RootLayout() {
     // <TamaguiProvider config={config} defaultTheme={colorScheme as any}>
     //   <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
     <TamaguiProvider config={config} defaultTheme={"light" as any}>
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffff" }}>
-        <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
-        <ThemeProvider value={DefaultTheme}>
-          <Stack>
-            <Stack.Screen name="index" options={{ headerShown: false }} />
-          </Stack>
-        </ThemeProvider>
-      </SafeAreaView>
+      {/* <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffff" }}> */}
+      <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
+      <ThemeProvider value={DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+        </Stack>
+      </ThemeProvider>
+      {/* </SafeAreaView> */}
     </TamaguiProvider>
   );
 }

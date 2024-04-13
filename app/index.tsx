@@ -21,7 +21,7 @@ const Index = () => {
     <ImageBackground
       source={require("../assets/images/login_background.webp")} // Yerel dosya yolunu buraya girin
       style={{ flex: 1 }}>
-      <View style={{ flex: 1, backgroundColor: "rgba(238, 238, 238, 0.95)" }}>
+      <View style={{ flex: 1, backgroundColor: "rgba(238, 238, 238, 0.94)", paddingBottom: 15 }}>
         {baseURL === null ? (
           <BaseURL onBaseURLChanged={setBaseURL} />
         ) : (
