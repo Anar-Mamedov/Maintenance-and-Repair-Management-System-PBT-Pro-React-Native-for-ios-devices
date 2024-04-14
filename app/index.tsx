@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Login from "./login";
 import BaseURL from "./baseURL";
 import RemoveBaseURL from "./RemoveBaseURL";
+import MenuDrawer from "./MenuDrawer";
 
 const Index = () => {
   const [baseURL, setBaseURL] = useState<string | null>(null);
@@ -30,6 +31,7 @@ const Index = () => {
             <RemoveBaseURL onBaseURLRemoved={setBaseURL} />
           </>
         )}
+        {/* <MenuDrawer /> */}
         <Image
           source={require("../assets/images/orjin-yazilim-logo.png")} // Dosya yolu örnek olarak verilmiştir, gerçek dosya yolunu giriniz.
           style={styles.logo}
