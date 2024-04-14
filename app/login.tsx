@@ -58,7 +58,7 @@ const Page = () => {
         theme="active"
         onPress={handleLogin}
         style={{
-          backgroundColor: "#0051ff",
+          backgroundColor: "#1677ff",
           color: "white",
           fontWeight: "normal",
           fontSize: 14,
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     marginLeft: -30,
   },
   button: {
-    backgroundColor: "#0051ff",
+    backgroundColor: "#1677ff",
     color: "white",
     fontWeight: "normal",
     fontSize: 14,

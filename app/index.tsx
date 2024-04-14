@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, ImageBackground } from "react-native";
+import { View, Text, ImageBackground, Image, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Login from "./login";
 import BaseURL from "./baseURL";
@@ -30,9 +30,22 @@ const Index = () => {
             <RemoveBaseURL onBaseURLRemoved={setBaseURL} />
           </>
         )}
+        <Image
+          source={require("../assets/images/orjin-yazilim-logo.png")} // Dosya yolu örnek olarak verilmiştir, gerçek dosya yolunu giriniz.
+          style={styles.logo}
+        />
       </View>
     </ImageBackground>
   );
 };
+
+const styles = StyleSheet.create({
+  logo: {
+    height: 20, // Logo yüksekliği
+    alignSelf: "center", // Logo merkeze hizalanır
+    resizeMode: "contain", // Logo oranlarını korur
+    marginBottom: 15,
+  },
+});
 
 export default Index;
