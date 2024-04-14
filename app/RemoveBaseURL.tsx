@@ -26,7 +26,7 @@ const RemoveBaseURL = ({ onBaseURLRemoved }: { onBaseURLRemoved: (value: string 
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#0051ff",
+    backgroundColor: "#1677ff",
     color: "white",
     fontWeight: "normal",
     fontSize: 14,
