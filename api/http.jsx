@@ -23,14 +23,14 @@ AxiosInstance.interceptors.request.use(async (request) => {
 
 AxiosInstance.interceptors.response.use(
   function (response) {
-    return response.data;
+    return response; // Burada response.data yerine tüm response nesnesini döndürüyoruz.
   },
   async function (error) {
     if (error.response && error.response.status === 401) {
       await AsyncStorage.removeItem("token");
       await AsyncStorage.removeItem("user");
       // Diğer gereksiz bilgileri de temizleyebilirsiniz.
-      window.location.href = "/auth"; // Kullanıcıyı yetkilendirme sayfasına yönlendiriyoruz.
+      // window.location.href = "/auth"; // Kullanıcıyı yetkilendirme sayfasına yönlendiriyoruz.
     }
     return Promise.reject(error);
   }

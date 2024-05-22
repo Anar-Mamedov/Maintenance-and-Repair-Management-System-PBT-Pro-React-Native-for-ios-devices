@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { View, Image, StyleSheet, Text } from "react-native";
+import { View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Button, Input } from "tamagui";
+import AxiosInstance from "../api/http.jsx";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Feather } from "@expo/vector-icons"; // Bu paketi eklemek için `expo install @expo/vector-icons` kullanın
 
 const Page = () => {
@@ -8,9 +10,29 @@ const Page = () => {
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  const handleLogin = () => {
-    // Burada giriş işlemlerini gerçekleştirin
-    console.log(username, password);
+  // const handleLogin = () => {
+  //   // Burada giriş işlemlerini gerçekleştirin
+  //   console.log(username, password);
+  // };
+
+  const handleLogin = async () => {
+    try {
+      const response = await AxiosInstance.post("/api/login", {
+        KLL_KOD: username,
+        KLL_SIFRE: password,
+      });
+      if (response.data && response.data.AUTH_TOKEN) {
+        await AsyncStorage.setItem("token", response.data.AUTH_TOKEN);
+        console.log("Token stored successfully");
+        // AsyncStorage'den token alınıyor
+        const tokenFromStorage = await AsyncStorage.getItem("token");
+        console.log("Token from AsyncStorage: ", tokenFromStorage);
+      } else {
+        console.log("No token received");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -26,15 +48,18 @@ const Page = () => {
         />
         <Text style={{ textAlign: "center" }}>version: 0.0.1</Text>
       </View>
-
-      <Input
-        size="$3"
-        value={username}
-        onChangeText={setUsername}
-        placeholder={"Kullanıcı Adı"}
-        textContentType="username" // iOS'ta kullanıcı adı için otomatik doldurma önerisi yapılmasını sağlar
-      />
-      <View style={{ flexDirection: "row", alignItems: "center", width: "100%" }}>
+      <TouchableOpacity>
+        <Input
+          size="$3"
+          value={username}
+          onChangeText={setUsername}
+          placeholder={"Kullanıcı Adı"}
+          textContentType="username" // iOS'ta kullanıcı adı için otomatik doldurma önerisi yapılmasını sağlar
+        />
+      </TouchableOpacity>
+      <View
+        style={{ flexDirection: "row", alignItems: "center", width: "100%" }}
+      >
         <Input
           size="$3"
           value={password}
@@ -70,7 +95,8 @@ const Page = () => {
           shadowOpacity: 0.25,
           shadowRadius: 3.84,
           elevation: 5,
-        }}>
+        }}
+      >
         Giriş Yap
       </Button>
     </View>
