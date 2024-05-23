@@ -1,4 +1,8 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
 import { SplashScreen, Stack } from "expo-router";
 import { useColorScheme, SafeAreaView, StatusBar } from "react-native";
 import { TamaguiProvider } from "tamagui";
@@ -42,14 +46,16 @@ export default function RootLayout() {
     // <TamaguiProvider config={config} defaultTheme={colorScheme as any}>
     //   <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
     <TamaguiProvider config={config} defaultTheme={"light" as any}>
-      {/* <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffff" }}> */}
-      <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
       <ThemeProvider value={DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
+        {/* <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffff" }}> */}
+        <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="index" />
+          <Stack.Screen name="HomePage" />
+          <Stack.Screen name="login" />
         </Stack>
+        {/* </SafeAreaView> */}
       </ThemeProvider>
-      {/* </SafeAreaView> */}
     </TamaguiProvider>
   );
 }
