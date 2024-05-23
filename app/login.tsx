@@ -4,11 +4,13 @@ import { Button, Input } from "tamagui";
 import AxiosInstance from "../api/http.jsx";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Feather } from "@expo/vector-icons"; // Bu paketi eklemek için `expo install @expo/vector-icons` kullanın
+import { useRouter } from "expo-router";
 
 const Page = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const router = useRouter();
 
   // const handleLogin = () => {
   //   // Burada giriş işlemlerini gerçekleştirin
@@ -27,6 +29,7 @@ const Page = () => {
         // AsyncStorage'den token alınıyor
         const tokenFromStorage = await AsyncStorage.getItem("token");
         console.log("Token from AsyncStorage: ", tokenFromStorage);
+        router.push("/MenuDrawer");
       } else {
         console.log("No token received");
       }

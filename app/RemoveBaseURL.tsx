@@ -3,7 +3,11 @@ import { View, Alert, StyleSheet } from "react-native";
 import { Button, Text } from "tamagui";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const RemoveBaseURL = ({ onBaseURLRemoved }: { onBaseURLRemoved: (value: string | null) => void }) => {
+const RemoveBaseURL = ({
+  onBaseURLRemoved,
+}: {
+  onBaseURLRemoved: (value: string | null) => void;
+}) => {
   const handleRemoveValue = async () => {
     try {
       await AsyncStorage.removeItem("baseURL");

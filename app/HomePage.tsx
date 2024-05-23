@@ -1,21 +1,29 @@
 import { View, Text, Button } from "react-native";
 import React from "react";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
 
 const HomePage = () => {
-  const navigation = useNavigation(); // useNavigation hook'unu kullanarak navigation nesnesine erişim sağlayın
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem("token");
+    router.push("/");
+  };
+
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>HomePage</Text>
       <Button
         onPress={() => {
-          if (navigation.canGoBack()) {
+          if (router.canGoBack()) {
             // geri dönecek bir ekran olup olmadığını kontrol edin
-            navigation.goBack();
+            router.back();
           }
         }}
         title="Go back"
       />
+      <Button onPress={handleLogout} title="Logout" />
     </View>
   );
 };

@@ -8,6 +8,7 @@ import MenuDrawer from "./MenuDrawer";
 
 const Index = () => {
   const [baseURL, setBaseURL] = useState<string | null>(null);
+  const [userToken, setUserToken] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchBaseURL = async () => {
@@ -15,14 +16,31 @@ const Index = () => {
       setBaseURL(storedBaseURL);
     };
 
+    const checkToken = async () => {
+      const token = await AsyncStorage.getItem("token");
+      setUserToken(token);
+    };
+
     fetchBaseURL();
+    checkToken();
   }, []); // Bağımlılık dizisi boş, yani yalnızca bileşen monte edildiğinde çalışır
+
+  if (userToken) {
+    return <MenuDrawer />;
+  }
 
   return (
     <ImageBackground
       source={require("../assets/images/login_background.webp")} // Yerel dosya yolunu buraya girin
-      style={{ flex: 1 }}>
-      <View style={{ flex: 1, backgroundColor: "rgba(238, 238, 238, 0.94)", paddingBottom: 15 }}>
+      style={{ flex: 1 }}
+    >
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "rgba(238, 238, 238, 0.94)",
+          paddingBottom: 15,
+        }}
+      >
         {baseURL === null ? (
           <BaseURL onBaseURLChanged={setBaseURL} />
         ) : (
